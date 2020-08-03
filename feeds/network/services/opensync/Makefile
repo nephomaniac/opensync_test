@@ -4,15 +4,17 @@ PKG_NAME:=opensync
 PKG_VERSION:=1.0
 PKG_RELEASE:=1
 
+OPENSYNC_SRC:=../../../../
+TARGET:=SRG_RAPTOR
+
 OPENSYNC_ROOTFS:=work/$(TARGET)/rootfs/
 PKG_BUILD_DEPENDS:=python3-kconfiglib/host
-
 include $(INCLUDE_DIR)/package.mk
 
 define Package/opensync
 	CATEGORY:=Network
 	TITLE:=cloud network management system
-	DEPENDS:=+libev +jansson +protobuf +libprotobuf-c +libmosquitto +libopenssl +openvswitch
+	DEPENDS:=+libev +jansson +protobuf +libprotobuf-c +libmosquitto +libopenssl +openvswitch +libpcap
 endef
 
 define Package/opensync/description
@@ -43,4 +45,4 @@ define Package/opensync/install
 	$(MAKE) -C $(PKG_BUILD_DIR)/opensync/core TARGET=$(TARGET) rootfs-copy-only INSTALL_ROOTFS_DIR=$(1)
 endef
 
-$(eval $(call BuildPackage,opensync))
+$(eval $(call BuildPackage,opensync,+libpcap))
