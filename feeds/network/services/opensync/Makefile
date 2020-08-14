@@ -8,7 +8,7 @@ OPENSYNC_SRC:=../../../../
 TARGET:=SRG_RAPTOR
 
 OPENSYNC_ROOTFS:=work/$(TARGET)/rootfs/
-PKG_BUILD_DEPENDS:=python3-kconfiglib/host
+PKG_BUILD_DEPENDS:=python3-kconfiglib/host kmod-mpls
 include $(INCLUDE_DIR)/package.mk
 
 define Package/opensync
